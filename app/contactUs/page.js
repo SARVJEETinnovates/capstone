@@ -28,7 +28,7 @@ export default function Contact() {
       </p>
 
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-4">
-        {/* <input
+        <input
           type="text"
           name="name"
           placeholder="Your Name"
@@ -36,7 +36,7 @@ export default function Contact() {
           onChange={handleChange}
           required
           className="w-full p-3 border border-gray-300 rounded-xl"
-        /> */}
+        />
 
         <input
           type="email"
