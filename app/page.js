@@ -243,9 +243,11 @@ export default function Home() {
       <section className="py-16 bg-blue-600 text-white text-center">
         <h2 className="text-4xl font-bold mb-4">Start Your Sleep Journey Today</h2>
         <p className="mb-6">Join 10,000+ users improving their wellness every night.</p>
-        <button className="bg-white text-blue-600 px-6 py-3 font-semibold rounded-xl hover:bg-gray-200">
-          Get Started
-        </button>
+        <Link href="/register">
+          <button className="bg-white text-blue-600 px-6 py-3 font-semibold rounded-xl hover:bg-gray-200">
+            Get Started
+          </button>
+        </Link>
       </section>
     </div>
   );
