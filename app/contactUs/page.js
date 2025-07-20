@@ -8,15 +8,28 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.name === "email") setError("");
+  };
+
+  const validateEmail = (email) => {
+    // Simple email regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Message sent! ✅");
-    // Here you can connect to Formspree, EmailJS, or your backend API
+    if (!validateEmail(form.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setError("");
+    // Construct mailto link (only message in body)
+    const mailto = `mailto:support@sleeptrackr.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(form.message)}`;
+    window.location.href = mailto;
     setForm({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -45,8 +58,9 @@ export default function Contact() {
           value={form.email}
           onChange={handleChange}
           required
-          className="w-full p-3 border border-gray-300 rounded-xl"
+          className={`w-full p-3 border rounded-xl ${error ? 'border-red-400' : 'border-gray-300'}`}
         />
+        {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
 
         <input
           type="text"
